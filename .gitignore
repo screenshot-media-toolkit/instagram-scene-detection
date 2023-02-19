@@ -1,3 +1,9 @@
+# requirement of this project
+darknet_yolo_v3_optimal.zip
+darknet-darknet_yolo_v3_optimal
+credentials.json
+yolov3.*
+
 # Created by https://www.toptal.com/developers/gitignore/api/python,visualstudiocode,linux,macos,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=python,visualstudiocode,linux,macos,windows
 

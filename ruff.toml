@@ -2,3 +2,4 @@ select = ["E", "F", "I", "N"]
 
 [per-file-ignores]
 "__init__.py" = ["E402", "F401"]
+"./src/scene_detection/libs/darknet.py" = ["ALL"]
