@@ -1,4 +1,4 @@
 select = ["E", "F", "I", "N"]
 
 [per-file-ignores]
-"__init__.py" = ["E402"]
+"__init__.py" = ["E402", "F401"]
