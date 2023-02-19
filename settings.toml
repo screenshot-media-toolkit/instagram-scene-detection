@@ -1,0 +1,35 @@
+# Prediction output
+[prediction]
+confidence_threshold = 0.01
+invisible_percentage = 0.13
+
+# Model configuration
+[model]
+metadata_path = "yolov3.data"
+config_path = "yolov3.cfg"
+weights_path = "yolov3.weights"
+
+# Google OCR API credential file
+[ocr-api]
+credentials_path = "credentials.json"
+
+# ----- vvv detector settings vvv ------
+[detectors.comment]
+acceptable_range = 0.15
+
+[detectors.homepage]
+confidence_divisor = 3
+labels = ["ins_logo", "icon_nav", "icon_msg", "icon_bookmark"]
+
+[detectors.external]
+confidence_divisor = 2
+labels = ["external_close", "external_info"]
+
+[detectors.reels]
+text_confidence = 0.15
+acceptable_range = 0.2
+
+[detectors.reels.labels]
+# position = "top-left" | "top-right" | "bottom-left" | "bottom-right"
+"reels_action" = { "multiplier" = 0.7, position = "bottom-right" }
+"reels_camera" = { "multiplier" = 0.15, position = "top-right" }
