@@ -1,0 +1,4 @@
+select = ["E", "F", "I", "N"]
+
+[per-file-ignores]
+"__init__.py" = ["E402"]
