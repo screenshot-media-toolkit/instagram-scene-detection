@@ -14,22 +14,22 @@ weights_path = "yolov3.weights"
 credentials_path = "credentials.json"
 
 # ----- vvv detector settings vvv ------
-[detectors.comment]
+[detector.comment]
 acceptable_range = 0.15
 
-[detectors.homepage]
+[detector.homepage]
 confidence_divisor = 3
 labels = ["ins_logo", "icon_nav", "icon_msg", "icon_bookmark"]
 
-[detectors.external]
+[detector.external]
 confidence_divisor = 2
 labels = ["external_close", "external_info"]
 
-[detectors.reels]
+[detector.reels]
 text_confidence = 0.15
 acceptable_range = 0.2
 
-[detectors.reels.labels]
+[detector.reels.labels]
 # position = "top-left" | "top-right" | "bottom-left" | "bottom-right"
 "reels_action" = { "multiplier" = 0.7, position = "bottom-right" }
 "reels_camera" = { "multiplier" = 0.15, position = "top-right" }

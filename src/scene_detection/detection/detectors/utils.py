@@ -1,10 +1,10 @@
 from typing import Container, Dict, Iterable, List, Union
 
-from .scene_detector import DetectionResult
+from scene_detection.types import DarknetResult
 
 
 def label_confidence(
-    objects: List[DetectionResult], labels: Union[Container[str], Iterable[str]]
+    objects: List[DarknetResult], labels: Union[Container[str], Iterable[str]]
 ):
     """Get the highest confidence of each label (if present) in the scene."""
 

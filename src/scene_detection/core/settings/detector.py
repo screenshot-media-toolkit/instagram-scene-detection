@@ -1,4 +1,4 @@
-from typing import Dict, Literal, Tuple
+from typing import Dict, List, Literal
 
 from pydantic import BaseModel
 
@@ -13,14 +13,14 @@ class HomepageDetectorSettings(BaseModel):
     """Paramters for homepage detectors."""
 
     confidence_divisor: float = 3
-    labels: Tuple[str] = ("ins_logo", "icon_nav", "icon_msg", "icon_bookmark")
+    labels: List[str] = ["ins_logo", "icon_nav", "icon_msg", "icon_bookmark"]
 
 
 class ExternalDetectorSettings(BaseModel):
     """Paramters for external link detectors."""
 
     confidence_divisor: float = 2
-    labels: Tuple[str] = ("external_close", "external_info")
+    labels: List[str] = ["external_close", "external_info"]
 
 
 class ReelsLabel(BaseModel):
