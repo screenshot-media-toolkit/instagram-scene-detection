@@ -1,4 +1,5 @@
 import logging
+from csv import DictWriter
 from pathlib import Path
 from typing import Any, Dict, List
 
@@ -26,7 +27,14 @@ read_input = input
     "-o", "--output", type=click.Path(), default="output.csv", help="Output CSV file"
 )
 def main(input: str, output: str) -> None:
-    """Entry point of the application."""
+    """Detect the scene of input image.
+
+    Given an Instagram screenshot, classify the scene of the image to
+    homepage, story, comment, external link or reels,
+    and write the results into a CSV file.
+
+    INPUT is the path to the Instagram screenshot, either image file or directory.
+    """
 
     logging.setLoggerClass(ColoredLogger)
     logger = logging.getLogger("app")
@@ -71,3 +79,9 @@ def main(input: str, output: str) -> None:
             all_rows.extend(rows)
         else:
             all_rows.append(rows)
+            all_rows.append(rows)
+
+    with output_path.open("w") as output_csv:
+        writer = DictWriter(output_csv, fieldnames=all_rows[0].keys())
+        writer.writeheader()
+        writer.writerows(all_rows)

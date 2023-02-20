@@ -9,6 +9,7 @@ Instagram 截圖場景辨識
   - [Prerequisites](#prerequisites)
   - [PDM](#pdm-recommended)
   - [PIP + Venv](#pip--venv)
+- [Usage](#usage)
 - [Configuration](#configuration)
 - [Labels](#labels)
 
@@ -92,6 +93,25 @@ Run the application
 
 ```bash
   python3 src/scene_detection /path/to/images
+```
+
+## Usage
+
+```
+Usage: python -m scene_detection [OPTIONS] INPUT
+
+  Detect the scene of input image.
+
+  Given an Instagram screenshot, classify the scene of the image to homepage,
+  story, comment, external link or reels, and write the results into a CSV
+  file.
+
+  INPUT is the path to the Instagram screenshot, either image file or
+  directory.
+
+Options:
+  -o, --output PATH  Output CSV file
+  --help             Show this message and exit.
 ```
 
 ## Configuration
