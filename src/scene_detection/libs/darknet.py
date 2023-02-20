@@ -1,4 +1,5 @@
 #!python3
+# type: ignore
 
 """
 Python 3 wrapper for identifying objects in images

@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List
 
 from google.cloud import vision
 
@@ -8,7 +8,7 @@ from scene_detection.libs.cloud_vision import (
     text_of_word,
     words_in_document,
 )
-from scene_detection.types import DarknetResult
+from scene_detection.types import DarknetResult, ImageDimension
 
 from .scene_detector import SceneDetector
 from .utils import get_position_percentage
@@ -43,7 +43,7 @@ class ReelsDetector(SceneDetector):
         self,
         objects: List[DarknetResult],
         document: vision.TextAnnotation,
-        image_dimension: Tuple[int, int],
+        image_dimension: ImageDimension,
     ) -> float:
         confidence = 0.0
 
@@ -65,7 +65,9 @@ class ReelsDetector(SceneDetector):
                 continue
 
             if (
-                get_position_percentage(mean_of_y_coordinate(word.bounding_box))
+                get_position_percentage(
+                    mean_of_y_coordinate(word.bounding_box), image_dimension[1]
+                )
                 > settings.detector.reels.acceptable_range
             ):
                 confidence += settings.detector.reels.text_confidence

@@ -1,4 +1,4 @@
-from typing import List, Tuple
+from typing import List
 
 from google.cloud import vision
 
@@ -8,7 +8,7 @@ from scene_detection.libs.cloud_vision import (
     text_of_word,
     words_in_document,
 )
-from scene_detection.types import DarknetResult
+from scene_detection.types import DarknetResult, ImageDimension
 
 from .scene_detector import SceneDetector
 from .utils import get_position_percentage
@@ -19,7 +19,7 @@ class CommentDetector(SceneDetector):
         self,
         objects: List[DarknetResult],
         document: vision.TextAnnotation,
-        image_dimension: Tuple[int, int],
+        image_dimension: ImageDimension,
     ) -> float:
         for word in words_in_document(document):
             text = text_of_word(word)

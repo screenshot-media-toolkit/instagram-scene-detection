@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 
-from scene_detection.core import main
+import sys
 
 if __name__ == "__main__":
-    main()
+    from scene_detection.core import main
+
+    sys.exit(main())

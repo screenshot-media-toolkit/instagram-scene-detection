@@ -1,9 +1,9 @@
 from abc import ABC, abstractmethod
-from typing import List, Tuple
+from typing import List
 
 from google.cloud import vision
 
-from scene_detection.types import DarknetResult
+from scene_detection.types import DarknetResult, ImageDimension
 
 
 class SceneDetector(ABC):
@@ -14,7 +14,7 @@ class SceneDetector(ABC):
         self,
         objects: List[DarknetResult],
         document: vision.TextAnnotation,
-        image_dimension: Tuple[int, int],
+        image_dimension: ImageDimension,
     ) -> float:
         """Compute the scene detection confidence score for the given objects."""
 

@@ -14,7 +14,7 @@ def detect_text(image_path: Path) -> vision.AnnotateImageResponse:
 
     request = vision.AnnotateImageRequest(image=image, features=[feature])
 
-    return client.annotate_image(request)
+    return client.annotate_image(request)  # type: ignore
 
 
 def read_file_to_image(image_path: Path):
@@ -46,8 +46,8 @@ def text_in_document(document: vision.TextAnnotation):
     yield from (text_of_word(word) for word in words_in_document(document))
 
 
-def mean_of_y_coordinate(bounding_box: vision.BoundingPoly) -> float:
+def mean_of_y_coordinate(bounding_box: vision.BoundingPoly) -> int:
     """Helper function to get the mean of the y coordinate of a bounding box."""
 
     y_coordinates = [vertex.y for vertex in bounding_box.vertices]
-    return statistics.mean(y_coordinates)
+    return round(statistics.mean(y_coordinates))

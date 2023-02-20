@@ -1,7 +1,7 @@
 import logging
 from csv import DictWriter
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict, Iterable, List
 
 import click
 
@@ -26,7 +26,7 @@ read_input = input
 @click.option(
     "-o", "--output", type=click.Path(), default="output.csv", help="Output CSV file"
 )
-def main(input: str, output: str) -> None:
+def main(input: str, output: str) -> int:
     """Detect the scene of input image.
 
     Given an Instagram screenshot, classify the scene of the image to
@@ -58,7 +58,9 @@ def main(input: str, output: str) -> None:
 
         if answer.lower() != "y" and answer.lower() != "yes":
             logger.info("Aborting.")
-            exit(0)
+            return 0
+
+    images: Iterable[Path]
 
     if input_path.is_file() and detection.is_image(input_path):
         logger.info(f"Detecting image {input_path}.")
@@ -68,7 +70,7 @@ def main(input: str, output: str) -> None:
         images = filter(detection.is_image, input_path.iterdir())
     else:
         logger.error(f"Invalid path {input_path}.")
-        exit(1)
+        return 1
 
     all_rows: List[Dict[str, Any]] = []
 
@@ -81,7 +83,12 @@ def main(input: str, output: str) -> None:
             all_rows.append(rows)
             all_rows.append(rows)
 
+    if not all_rows:
+        return 0
+
     with output_path.open("w") as output_csv:
         writer = DictWriter(output_csv, fieldnames=all_rows[0].keys())
         writer.writeheader()
         writer.writerows(all_rows)
+
+    return 0

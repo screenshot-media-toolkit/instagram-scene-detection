@@ -1,7 +1,7 @@
 from bisect import bisect
 from functools import partial
 from pathlib import Path
-from typing import Any, Container, Dict, Iterable, List, Sequence, Union
+from typing import Any, Dict, Iterable, List, Sequence
 
 from google.cloud import vision
 from PIL import Image
@@ -19,9 +19,7 @@ from scene_detection.libs.detect_objects import detect_objects
 from scene_detection.types import DarknetResult, ImageDimension
 
 
-def get_single_row(
-    image_path: Path, context: str, scenes: Union[Container[str], Iterable[str]]
-):
+def get_single_row(image_path: Path, context: str, scenes: Iterable[str]):
     """Represent a single row of the output table."""
 
     return {
@@ -45,7 +43,7 @@ def get_image_dimension(image_path: Path) -> ImageDimension:
     """Return the dimensions of an image."""
 
     image = Image.open(image_path)
-    return image.size
+    return image.size  # type: ignore
 
 
 def is_visible(x: int, height: int):
@@ -77,7 +75,7 @@ def create_row_by_confidence(
 ):
     """Create a row by confidence of prediction and detection."""
 
-    confident_scene: str = max(confidences, key=confidences.get)
+    confident_scene: str = max(confidences, key=confidences.get)  # type: ignore
 
     row = get_single_row(image_path, context, scenes)
 
